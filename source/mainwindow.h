@@ -10,7 +10,11 @@
 #include <QLabel>
 #include <bits/stdc++.h>
 #include <QString>
-
+#include <QTimer>
+#include <QProcess>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 namespace Ui {
 class MainWindow;
 }
@@ -25,14 +29,21 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QImage *image;
+    QImage *image = nullptr;
+    QImage *img = nullptr;
+    QProcess *pythonProcess = nullptr;
     QString transport;
     QString number;
+    QTimer tim;
+    QString filename;
 
 private slots:
     void findObject();
     void setPicture();
+    void parseJson(int exitCode);
     void update_image();
+    void onElapsed();
+    void update_image_r(int y1, int x1, int y2, int x2, QString name, double rate);
 };
 
 #endif // MAINWINDOW_H
